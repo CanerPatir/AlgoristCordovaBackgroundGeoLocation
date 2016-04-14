@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com-algorist-plugins-locationListener" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>AlgoristLocationListener</name>
+  <js-module name="AlgoristLocationListener" src="www/AlgoristLocationListener.js">
+    <clobbers target="AlgoristLocationListener" />
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="AlgoristLocationListener">
+        <param name="android-package" value="com.algorist.plugins.LocationListener.AlgoristLocationListenerPlugin" />
+      </feature>
+    </config-file>
+    <config-file parent="/manifest" target="AndroidManifest.xml">
+      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+      <uses-permission android:name="android.permission.INTERNET" />
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    </config-file>
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+      <service android:name="com.algorist.plugins.LocationListener.LocationListenerService" android:process=":my_service" />
+      <receiver android:enabled="true" android:exported="false" android:name="com.algorist.plugins.LocationListener.LocationListenerBootReceiver">
+        <intent-filter>
+          <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+      </receiver>
+    </config-file>
+    <framework custom="true" src="src/android/locationListener.gradle" type="gradleReference" />
+    <resource-file src="libs/volley.aar" target="libs/volley.aar" />
+    <source-file src="src/android/AlgoristLocationListenerPlugin.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+    <source-file src="src/android/LocationListener.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+    <source-file src="src/android/LocationListenerBootReceiver.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+    <source-file src="src/android/LocationConfig.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+    <source-file src="src/android/LocationListenerService.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+    <source-file src="src/android/LocationListenerLogger.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+    <source-file src="src/android/LocationListenerJsonRequest.java" target-dir="src/com/algorist/plugins/LocationListener/" />
+  </platform>
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="AlgoristLocationListener">
+        <param name="ios-package" value="AlgoristLocationListener" />
+      </feature>
+    </config-file>
+    <config-file target="*-Info.plist" parent="UIBackgroundModes">
+      <array>
+        <string>location</string>
+      </array>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+      <string></string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+      <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+      </dict>
+    </config-file>
+    
+    <framework src="CoreLocation.framework" />
+    <source-file src="src/ios/AlgoristLocationListener.m" />
+    <header-file src="src/ios/AppDelegate+LocationListener.h" />
+    <source-file src="src/ios/AppDelegate+LocationListener.m" />
+    <header-file src="src/ios/ALGLocationManager.h" />
+    <source-file src="src/ios/ALGLocationManager.m" />
+    <header-file src="src/ios/LocationListenerConfig.h" />
+    <source-file src="src/ios/LocationListenerConfig.m" />
+  </platform>
+</plugin>
