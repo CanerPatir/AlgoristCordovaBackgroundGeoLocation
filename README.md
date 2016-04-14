@@ -6,7 +6,7 @@ This is an Apache Cordova plugin that allows of tracking user location and posts
 
 Starting Plugin:
 ```javascript
- AlgoristLocationListener.startLocationListener(<your_resful_service>
+ AlgoristLocationListener.startLocationListener(<your_restful_service_address>
             , <your_headers_if_required>//For Example: { Authorization: 'Bearer asd13821f/Qwer.....'}
             , true //debug mode true false it shows toast if true but on ios do nothing
             , function () {
