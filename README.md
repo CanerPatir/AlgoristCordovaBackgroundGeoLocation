@@ -2,9 +2,9 @@
 This is an Apache Cordova plugin that allows of tracking user location and posts location changes to server.
 
 
-# Usage
+# Usage of The Plugin
 
-Starting Plugin:
+Starting plugin:
 ```javascript
  AlgoristLocationListener.startLocationListener(<your_restful_service_address>
             , <your_headers_if_required>//For Example: { Authorization: 'Bearer asd13821f/Qwer.....'}
@@ -16,7 +16,7 @@ Starting Plugin:
             });
 ```
 
-Stopping Plugin:
+Stopping plugin:
 ```javascript
   AlgoristLocationListener.stopLocationListener(function () {
             console.log('[AlgoristLocationListener] plugin has stopped.');
@@ -24,4 +24,11 @@ Stopping Plugin:
             console.log('[AlgoristLocationListener] could not be stopped.' + err);
         });
 ```
-
+Server-side JSON data format:
+  The plugin submits 2d coordinate data to specified uri with post method. The data JSON format that is sent to server as below:
+```javascript
+  {
+    "lat": <latitude_value>//Ex: 40.56897
+    "long": <longitude_value>//Ex: 40.56897
+  }
+```
