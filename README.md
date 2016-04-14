@@ -32,3 +32,4 @@ Server-side JSON data format:
     "long": <longitude_value>//Ex: 40.56897
   }
 ```
+ 
