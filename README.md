@@ -1,5 +1,5 @@
 # AlgoristCordovaBackgroundGeoLocation
-This is a Apache Cordova plugin that allows of tracking user location and posts location changes to http server.
+This is an Apache Cordova plugin that allows of tracking user location and posts location changes to server.
 
 
 # Usage
